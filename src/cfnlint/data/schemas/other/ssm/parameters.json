@@ -1,0 +1,192 @@
+{
+ "additionalProperties": false,
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "type": {
+      "const": "String"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "allowedValues": {
+      "items": {
+       "type": "string"
+      }
+     },
+     "default": {
+      "type": "string"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "type": {
+      "const": "Boolean"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "allowedValues": {
+      "items": {
+       "type": "boolean"
+      }
+     },
+     "default": {
+      "type": "boolean"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "type": {
+      "const": "Integer"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "allowedValues": {
+      "items": {
+       "type": "number"
+      }
+     },
+     "default": {
+      "type": "number"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "type": {
+      "const": "StringList"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "allowedValues": {
+      "items": {
+       "type": [
+        "string",
+        "array"
+       ]
+      }
+     },
+     "default": {
+      "items": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "type": {
+      "const": "StringMap"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "allowedValues": {
+      "items": {
+       "type": "object"
+      }
+     },
+     "default": {
+      "items": {
+       "type": "object"
+      }
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "type": {
+      "const": "MapList"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "allowedValues": {
+      "items": {
+       "type": [
+        "object",
+        "array"
+       ]
+      }
+     },
+     "default": {
+      "items": {
+       "items": {
+        "type": "object"
+       },
+       "type": "array"
+      }
+     }
+    }
+   }
+  }
+ ],
+ "properties": {
+  "allowedPattern": {
+   "type": "string"
+  },
+  "allowedValues": {
+   "type": "array"
+  },
+  "default": {},
+  "description": {
+   "type": "string"
+  },
+  "displayType": {
+   "enum": [
+    "textfield",
+    "textarea"
+   ],
+   "type": "string"
+  },
+  "maxChars": {
+   "type": "number"
+  },
+  "maxItems": {
+   "type": "number"
+  },
+  "minChars": {
+   "type": "number"
+  },
+  "minItems": {
+   "type": "number"
+  },
+  "type": {
+   "enum": [
+    "String",
+    "StringList",
+    "Boolean",
+    "Integer",
+    "MapList",
+    "StringMap"
+   ],
+   "type": "string"
+  }
+ },
+ "required": [
+  "type"
+ ],
+ "type": "object"
+}

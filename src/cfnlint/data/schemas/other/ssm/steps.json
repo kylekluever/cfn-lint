@@ -1,0 +1,1247 @@
+{
+ "additionalProperties": false,
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:approve"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/approve"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:assertAwsResourceProperty"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/assertAwsResourceProperty"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:branch"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/branch"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:changeInstanceState"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/changeInstanceState"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:copyImage"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/copyImage"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:createImage"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/createImage"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:createStack"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/createStack"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:createTags"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/createTags"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:deleteImage"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/deleteImage"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:deleteStack"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/deleteStack"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:executeAutomation"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/executeAutomation"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:executeAwsApi"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/executeAwsApi"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:executeScript"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/executeScript"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:executeStateMachine"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/executeStateMachine"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:invokeLambdaFunction"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/invokeLambdaFunction"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:pause"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/pause"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:runCommand"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/runCommand"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:runInstances"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/runInstances"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:sleep"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/sleep"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "action": {
+      "const": "aws:waitForAwsResourceProperties"
+     }
+    }
+   },
+   "then": {
+    "$ref": "#/definitions/waitForAwsResourceProperties"
+   }
+  }
+ ],
+ "definitions": {
+  "approve": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "Approvers": {
+       "items": {
+        "type": "string"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "Message": {
+       "type": "string"
+      },
+      "MinRequiredApprovals": {
+       "type": [
+        "string",
+        "integer"
+       ]
+      },
+      "NotificationArn": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "Approvers"
+     ]
+    }
+   },
+   "required": [
+    "inputs"
+   ]
+  },
+  "assertAwsResourceProperty": {
+   "properties": {
+    "inputs": {
+     "additionalProperties": true,
+     "properties": {
+      "Api": {
+       "type": "string"
+      },
+      "DesiredValues": {},
+      "PropertySelector": {},
+      "Service": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "Service",
+      "Api",
+      "PropertySelector",
+      "DesiredValues"
+     ]
+    }
+   }
+  },
+  "branch": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "Choices": {
+       "items": {
+        "oneOf": [
+         {
+          "$ref": "#/definitions/branch_simpleConditional"
+         },
+         {
+          "properties": {
+           "And": {
+            "properties": {
+             "items": {
+              "$ref": "#/definitions/branch_simpleConditional"
+             }
+            },
+            "type": "object"
+           },
+           "Not": {
+            "$ref": "#/definitions/branch_simpleConditional",
+            "type": "object"
+           },
+           "Or": {
+            "properties": {
+             "items": {
+              "$ref": "#/definitions/branch_simpleConditional"
+             }
+            },
+            "type": "object"
+           }
+          },
+          "requiredXor": [
+           "And",
+           "Or",
+           "Not"
+          ],
+          "type": "object"
+         }
+        ],
+        "properties": {
+         "NextStep": {
+          "type": "string"
+         }
+        },
+        "type": "object"
+       },
+       "type": "array"
+      },
+      "Default": {
+       "type": "string"
+      }
+     },
+     "type": "object"
+    }
+   }
+  },
+  "branch_simpleCondition": {
+   "oneOf": [
+    {
+     "properties": {
+      "StringEquals": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "properties": {
+      "EqualsIgnoreCase": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "properties": {
+      "StartsWith": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "properties": {
+      "EndsWith": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "properties": {
+      "Contains": {
+       "type": "string"
+      }
+     }
+    },
+    {
+     "properties": {
+      "NumericEquals": {
+       "type": "number"
+      }
+     }
+    },
+    {
+     "properties": {
+      "NumericGreater": {
+       "type": "number"
+      }
+     }
+    },
+    {
+     "properties": {
+      "NumericLesser": {
+       "type": "number"
+      }
+     }
+    },
+    {
+     "properties": {
+      "NumericGreaterOrEquals": {
+       "type": "number"
+      }
+     }
+    },
+    {
+     "properties": {
+      "NumericLesserOrEquals": {
+       "type": "number"
+      }
+     }
+    },
+    {
+     "properties": {
+      "BooleanEquals": {
+       "type": "boolean"
+      }
+     }
+    }
+   ],
+   "type": "object"
+  },
+  "branch_simpleConditional": {
+   "$ref": "#/definitions/branch_simpleCondition",
+   "properties": {
+    "Variable": {
+     "type": "string"
+    }
+   }
+  },
+  "changeInstanceState": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "CheckStateOnly": {
+       "default": false,
+       "type": [
+        "boolean",
+        "string"
+       ]
+      },
+      "DesiredState": {
+       "oneOf": [
+        {
+         "enum": [
+          "running",
+          "stopped",
+          "terminated"
+         ]
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "Force": {
+       "type": [
+        "string",
+        "boolean"
+       ]
+      },
+      "InstanceIds": {}
+     },
+     "required": [
+      "InstanceIds",
+      "DesiredState"
+     ]
+    }
+   }
+  },
+  "copyImage": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "ClientToken": {
+       "type": "string"
+      },
+      "Encrypted": {
+       "type": [
+        "string",
+        "boolean"
+       ]
+      },
+      "ImageDescription": {
+       "type": "string"
+      },
+      "ImageName": {
+       "type": "string"
+      },
+      "KmsKeyId": {
+       "type": "string"
+      },
+      "SourceImageId": {
+       "type": "string"
+      },
+      "SourceRegion": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "SourceRegion",
+      "SourceImageId",
+      "ImageName"
+     ]
+    }
+   }
+  },
+  "createImage": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "BlockDeviceMappings": {
+       "type": [
+        "string",
+        "object"
+       ]
+      },
+      "ImageDescription": {
+       "type": "string"
+      },
+      "ImageName": {
+       "type": "string"
+      },
+      "InstanceId": {
+       "type": "string"
+      },
+      "NoReboot": {
+       "type": [
+        "string",
+        "boolean"
+       ]
+      }
+     },
+     "required": [
+      "InstanceId",
+      "ImageName"
+     ]
+    }
+   }
+  },
+  "createStack": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "Capabilities": {
+       "items": {
+        "enum": [
+         "CAPABILITY_IAM",
+         "CAPABILITY_NAMED_IAM",
+         "CAPABILITY_AUTO_EXPAND"
+        ],
+        "type": "string"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "ClientRequestToken": {
+       "maxLength": 128,
+       "minLength": 1,
+       "pattern": "[a-zA-Z0-9][-a-zA-Z0-9]*",
+       "type": "string"
+      },
+      "DisableRollback": {
+       "default": false,
+       "type": [
+        "string",
+        "boolean"
+       ]
+      },
+      "NotificationARNs": {
+       "description": "The Amazon SNS topic ARNs for publishing stack-related events.",
+       "items": {
+        "type": "string"
+       },
+       "maxItems": 5,
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "Parameters": {
+       "items": {
+        "type": "object"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "ResourceTypes": {
+       "items": {
+        "type": "string"
+       },
+       "maxItems": 256,
+       "minItems": 1,
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "RoleARN": {
+       "maxLength": 2048,
+       "minLength": 20,
+       "type": "string"
+      },
+      "StackName": {
+       "maxLength": 128,
+       "type": "string"
+      },
+      "StackPolicyBody": {
+       "maxLength": 16384,
+       "minLength": 1,
+       "type": "string"
+      },
+      "StackPolicyURL": {
+       "maxLength": 1350,
+       "minLength": 1,
+       "type": "string"
+      },
+      "Tags": {},
+      "TemplateBody": {
+       "minLength": 1,
+       "type": "string"
+      },
+      "TemplateURL": {
+       "maxLength": 1024,
+       "minLength": 1,
+       "type": "string"
+      },
+      "TimeoutInMinutes": {
+       "minimum": 1,
+       "type": [
+        "integer",
+        "string"
+       ]
+      },
+      "onFailure": {
+       "default": "ROLLBACK",
+       "enum": [
+        "DO_NOTHING",
+        "ROLLBACK",
+        "DELETE"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "StackName"
+     ]
+    }
+   }
+  },
+  "createTags": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "ResourceIds": {
+       "items": {
+        "type": "string"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "ResourceType": {
+       "oneOf": [
+        {
+         "enum": [
+          "EC2",
+          "ManagedInstance",
+          "MaintenanceWindow",
+          "Parameter"
+         ]
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "Tags": {
+       "items": {
+        "type": "object"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      }
+     },
+     "required": [
+      "ResourceIds",
+      "Tags"
+     ]
+    }
+   }
+  },
+  "deleteImage": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "ImageId": {
+       "description": "The ID of the image to be deleted.",
+       "type": "string"
+      }
+     },
+     "required": [
+      "ImageId"
+     ]
+    }
+   }
+  },
+  "deleteStack": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "ClientRequestToken": {
+       "oneOf": [
+        {
+         "maxLength": 128,
+         "minLength": 1,
+         "pattern": "[a-zA-Z][-a-zA-Z0-9]*"
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "RetainResources.member.N": {
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "RoleARN": {
+       "maxLength": 2048,
+       "minLength": 20,
+       "type": "string"
+      },
+      "StackName": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "StackName"
+     ]
+    }
+   }
+  },
+  "executeAutomation": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "DocumentName": {
+       "type": "string"
+      },
+      "DocumentVersion": {
+       "type": "string"
+      },
+      "RuntimeParameters": {
+       "type": [
+        "string",
+        "object"
+       ]
+      }
+     },
+     "required": [
+      "DocumentName"
+     ]
+    }
+   }
+  },
+  "executeAwsApi": {
+   "properties": {
+    "inputs": {
+     "additionalProperties": true,
+     "properties": {
+      "Api": {
+       "type": "string"
+      },
+      "Service": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "Service"
+     ]
+    }
+   }
+  },
+  "executeScript": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "Attachment": {
+       "type": "string"
+      },
+      "Handler": {
+       "type": "string"
+      },
+      "InputPayload": {
+       "type": [
+        "string",
+        "object"
+       ]
+      },
+      "Runtime": {
+       "oneOf": [
+        {
+         "enum": [
+          "python3.6",
+          "python3.7",
+          "python3.8",
+          "PowerShell Core 6.0",
+          "PowerShell 7.0"
+         ]
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "Script": {
+       "type": [
+        "string"
+       ]
+      }
+     },
+     "required": [
+      "Runtime"
+     ]
+    }
+   }
+  },
+  "executeStateMachine": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "input": {
+       "type": "string"
+      },
+      "name": {
+       "type": "string"
+      },
+      "stateMachineArn": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "stateMachineArn"
+     ]
+    }
+   }
+  },
+  "invokeLambdaFunction": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "ClientContext": {},
+      "FunctionName": {
+       "type": "string"
+      },
+      "InvocationType": {
+       "oneOf": [
+        {
+         "enum": [
+          "Event",
+          "RequestResponse",
+          "DryRun"
+         ]
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "LogType": {
+       "oneOf": [
+        {
+         "enum": [
+          "None",
+          "Tail"
+         ]
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "Payload": {},
+      "Qualifier": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "FunctionName"
+     ]
+    }
+   }
+  },
+  "pause": {},
+  "runCommand": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "CloudWatchOutputConfig": {
+       "type": [
+        "object",
+        "string"
+       ]
+      },
+      "Comment": {
+       "type": "string"
+      },
+      "DocumentHash": {
+       "type": "string"
+      },
+      "DocumentHashType": {
+       "oneOf": [
+        {
+         "enum": [
+          "Sha256",
+          "Sha1"
+         ]
+        },
+        {
+         "pattern": "^{{[ ]{0,1}[a-zA-Z_.]+[ ]{0,1}}}$"
+        }
+       ],
+       "type": "string"
+      },
+      "DocumentName": {
+       "type": "string"
+      },
+      "InstanceIds": {
+       "items": {
+        "type": "string"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "NotificationConfig": {},
+      "OutputS3BucketName": {
+       "type": "string"
+      },
+      "OutputS3KeyPrefix": {
+       "type": "string"
+      },
+      "Parameters": {
+       "type": [
+        "string",
+        "object"
+       ]
+      },
+      "ServiceRoleArn": {
+       "type": "string"
+      },
+      "Targets": {
+       "items": {
+        "type": "object"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "TimeoutSeconds": {
+       "type": [
+        "string",
+        "integer"
+       ]
+      }
+     },
+     "required": [
+      "DocumentName"
+     ]
+    }
+   }
+  },
+  "runInstances": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "AdditionalInfo": {
+       "type": "string"
+      },
+      "BlockDeviceMappings": {
+       "items": {
+        "type": "object"
+       },
+       "type": [
+        "string",
+        "array"
+       ]
+      },
+      "ClientToken": {
+       "type": "string"
+      },
+      "DisableApiTermination": {
+       "type": [
+        "boolean",
+        "string"
+       ]
+      },
+      "EbsOptimized": {
+       "type": [
+        "boolean",
+        "string"
+       ]
+      },
+      "IamInstanceProfileArn": {
+       "type": "string"
+      },
+      "IamInstanceProfileName": {
+       "type": "string"
+      },
+      "ImageId": {
+       "type": "string"
+      },
+      "InstanceInitiatedShutdownBehavior": {
+       "type": "string"
+      },
+      "InstanceType": {
+       "type": "string"
+      },
+      "KernelId": {
+       "type": "string"
+      },
+      "KeyName": {
+       "type": "string"
+      },
+      "MaxInstanceCount": {
+       "type": [
+        "integer",
+        "string"
+       ]
+      },
+      "MinInstanceCount": {
+       "type": [
+        "integer",
+        "string"
+       ]
+      },
+      "Monitoring": {
+       "type": [
+        "string",
+        "boolean"
+       ]
+      },
+      "NetworkInterfaces": {},
+      "Placement": {
+       "type": [
+        "object",
+        "string"
+       ]
+      },
+      "PrivateIpAddress": {
+       "type": "string"
+      },
+      "RamdiskId": {
+       "type": "string"
+      },
+      "SecurityGroup": {},
+      "SecurityGroupIds": {},
+      "SubnetId": {
+       "type": "string"
+      },
+      "TagSpecifications": {},
+      "UserData": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "ImageId"
+     ]
+    }
+   }
+  },
+  "sleep": {
+   "properties": {
+    "inputs": {
+     "properties": {
+      "Duration": {
+       "type": "string"
+      },
+      "TimeStamp": {
+       "type": "string"
+      }
+     }
+    }
+   }
+  },
+  "waitForAwsResourceProperty": {
+   "properties": {
+    "inputs": {
+     "additionalProperties": true,
+     "properties": {
+      "Api": {
+       "type": "string"
+      },
+      "DesiredValues": {},
+      "PropertySelector": {},
+      "Service": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "Service",
+      "Api",
+      "PropertySelector",
+      "DesiredValues"
+     ]
+    }
+   }
+  }
+ },
+ "properties": {
+  "action": {
+   "enum": [
+    "aws:approve",
+    "aws:assertAwsResourceProperty",
+    "aws:branch",
+    "aws:changeInstanceState",
+    "aws:copyImage",
+    "aws:createImage",
+    "aws:createStack",
+    "aws:createTags",
+    "aws:deleteImage",
+    "aws:deleteStack",
+    "aws:executeAutomation",
+    "aws:executeAwsApi",
+    "aws:executeScript",
+    "aws:executeStateMachine",
+    "aws:invokeLambdaFunction",
+    "aws:pause",
+    "aws:runCommand",
+    "aws:runInstances",
+    "aws:sleep",
+    "aws:waitForAwsResourceProperty"
+   ],
+   "type": "string"
+  },
+  "description": {
+   "type": "string"
+  },
+  "inputs": {
+   "type": "object"
+  },
+  "isCritical": {
+   "default": true,
+   "type": [
+    "string",
+    "boolean"
+   ]
+  },
+  "isEnd": {
+   "default": false,
+   "type": [
+    "string",
+    "boolean"
+   ]
+  },
+  "maxAttempts": {
+   "default": 1,
+   "type": "integer"
+  },
+  "name": {
+   "type": "string"
+  },
+  "nextStep": {
+   "type": "string"
+  },
+  "onFailure": {
+   "default": "Abort",
+   "pattern": "((^|, )(Abort|Continue|step:\\w+))$",
+   "type": "string"
+  },
+  "outputs": {
+   "items": {
+    "properties": {
+     "Name": {
+      "type": "string"
+     },
+     "Selector": {
+      "type": "string"
+     },
+     "Type": {
+      "enum": [
+       "String",
+       "StringList",
+       "Boolean",
+       "Integer",
+       "MapList",
+       "StringMap"
+      ],
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "type": "array"
+  },
+  "timeoutSeconds": {
+   "type": [
+    "integer",
+    "string"
+   ]
+  }
+ },
+ "required": [
+  "name",
+  "action",
+  "inputs"
+ ],
+ "type": "object"
+}
