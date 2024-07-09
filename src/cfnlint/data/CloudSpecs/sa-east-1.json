@@ -12731,7 +12731,33 @@
   "CidrIp": "CACHED",
   "CodePipelineWehbookAuthentication": "CACHED",
   "CustomerGatewayType": "CACHED",
-  "DAXInstanceType": "CACHED",
+  "DAXInstanceType": {
+   "AllowedValues": [
+    "dax.r4.16xlarge",
+    "dax.r4.2xlarge",
+    "dax.r4.4xlarge",
+    "dax.r4.8xlarge",
+    "dax.r4.large",
+    "dax.r4.xlarge",
+    "dax.r5.12xlarge",
+    "dax.r5.16xlarge",
+    "dax.r5.24xlarge",
+    "dax.r5.2xlarge",
+    "dax.r5.4xlarge",
+    "dax.r5.8xlarge",
+    "dax.r5.large",
+    "dax.r5.xlarge",
+    "dax.t2.medium",
+    "dax.t2.small",
+    "dax.t3.medium",
+    "dax.t3.small"
+   ],
+   "Ref": {
+    "Parameters": [
+     "String"
+    ]
+   }
+  },
   "DHCPOptionsNetbiosNodeType": "CACHED",
   "DLMPolicyResourceType": "CACHED",
   "DmsEndpointSslMode": "CACHED",
